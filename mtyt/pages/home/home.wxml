@@ -1,0 +1,37 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo"><!-- 当天答题显示 -->
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <!-- <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image> -->
+      <!-- <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
+      <image class="question-bg" src="../../image/suzhi.jpg"></image>
+      <view class="question-first">
+        <view class="question-date">
+          <view class="question-ymd question-year">{{year}}</view>
+          <view class="question-ymd question-month">{{month}}</view>
+          <view class="question-ymd question-dat">{{day}}</view>
+        </view>
+        <view class='question-text'>{{questionText}}</view>
+        <view class='question-num'>{{questionNum}}</view>
+        <button bindtap="bindAnswerTap" id="Go-to-answer">{{questionToAnswer}}</button>
+      </view>
+    </block>
+  </view>
+  <view class="pastrecords"><!-- 历史答题显示 -->
+    <view wx:for="{{pastRecords}}" wx:key="unique" class="past-records {{index}}">
+      <text class="pastTopic">{{item.pastTopic}}</text>
+      <text class="pastDate">{{item.pastDate}}</text>
+      <image src='{{item.pastImage}}' class="pastImage"></image>      
+      <text class="pastAnswerPeople">{{item.pastAnswerPeople}}</text>
+      <text class='pastIforNot' wx:if="{{item.pastIforNot==1}}">已完成</text>
+      <text class='pastIforNot pastNot' wx:else>未完成</text>
+      <text class='pastRemind' wx:if="{{item.pastIforNot==1}}">{{"时时温故而知新"+" "+">"}}</text>
+      <text class='pastRemind' wx:else>{{"一分耕耘趁光阴"+" "+">"}}</text>
+      <view class='fengek'>
+        <text class='fenge'></text>
+      </view>
+    </view>
+  </view>
+  <view class='more' bindtap='bindMineTap'>查看更多</view><!-- 查看更多 -->
+</view>
