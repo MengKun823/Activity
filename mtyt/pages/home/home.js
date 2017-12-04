@@ -54,6 +54,7 @@ Page({
       questionText: '司考史上，出题率最高的一道题，快来试一试！',
       questionNum: 100+'人已答题',
       questionToAnswer: '去答题' + ' ' + '>',
+      pastIforNot: 0,
       pastRecords: [{
         unique: 'unique_1',
         pastTopic: '想在考试中活的400分?先把这道题吃掉吧',
@@ -96,14 +97,7 @@ Page({
         pastImage: '../../image/suzhi.jpg',
         pastAnswerPeople: 198 + '人已答题',
         pastIforNot: 1
-        },{
-          unique: 'unique_7',
-          pastTopic: '百分之百的真题，历年考试率百分之95',
-          pastDate: '2017年11月29日',
-          pastImage: '../../image/suzhi.jpg',
-          pastAnswerPeople: 1112 + '人已答题',
-          pastIforNot: 0
-        }]
+      }]
     });
     // console.log(time);
     if (app.globalData.userInfo) {

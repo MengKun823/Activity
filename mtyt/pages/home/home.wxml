@@ -14,7 +14,11 @@
         </view>
         <view class='question-text'>{{questionText}}</view>
         <view class='question-num'>{{questionNum}}</view>
-        <button bindtap="bindAnswerTap" id="Go-to-answer">{{questionToAnswer}}</button>
+        <text class="Go-to-answer accomplishT" wx:if="{{pastIforNot==0}}">
+          <text class='accomplish'>✔</text>
+          <text class='accomplishText'>已答题</text>
+        </text>
+        <button bindtap="bindAnswerTap" class="Go-to-answer" wx:else>{{questionToAnswer}}</button>
       </view>
     </block>
   </view>

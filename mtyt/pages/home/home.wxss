@@ -98,7 +98,7 @@
   left: 60rpx;
   bottom: 72rpx;
 }
-#Go-to-answer{
+.Go-to-answer{
   font-family: 'PingFangSC-Semibold';
   display: inline-block;
   width: 180rpx;
@@ -113,6 +113,25 @@
   position: absolute;
   right: 60rpx;
   bottom: 60rpx;
+}
+.accomplishT{
+  background: none;
+}
+.accomplish{
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: #fff;
+  background-image: linear-gradient(-180deg, #36FF8F 0%, #00CB36 100%);
+  border-radius: 50%;
+}
+.accomplishText{
+  display: inline-block;
+  color: #00CB36;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-left: 20rpx;
 }
 .pastrecords{
   display: block;
