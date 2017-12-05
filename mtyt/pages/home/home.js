@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var util = require('../../utils/util.js');  
+var util = require('../../utils/util.js')
 Page({
   data: {
     motto: 'Hello w',
@@ -51,7 +51,7 @@ Page({
       year: year,
       month: month+' '+'月',
       day: day,
-      questionText: '司考史上，出题率最高的一道题，快来试一试！',
+      questionText: '司考史上，出题率最高的一道题快来试一试！',
       questionNum: 100+'人已答题',
       questionToAnswer: '去答题' + ' ' + '>',
       pastIforNot: 0,

@@ -14,7 +14,7 @@
         </view>
         <view class='question-text'>{{questionText}}</view>
         <view class='question-num'>{{questionNum}}</view>
-        <text class="Go-to-answer accomplishT" wx:if="{{pastIforNot==0}}">
+        <text class="Go-to-answer accomplishT" wx:if="{{pastIforNot==1}}">
           <text class='accomplish'>✔</text>
           <text class='accomplishText'>已答题</text>
         </text>

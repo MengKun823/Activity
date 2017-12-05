@@ -37,7 +37,7 @@
   width: 200rpx;
   height: 124rpx;
   background: rgba(0,0,0,0.80);
-  border-radius: 0 0 6rpx 6rpx;
+  border-radius: 0 0 12rpx 12rpx;
   position: absolute;
   left: 32rpx;
 }

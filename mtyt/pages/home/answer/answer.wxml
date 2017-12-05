@@ -1,2 +1,24 @@
 <!--pages/home/answer/answer.wxml-->
-<text>pages/home/answer/answer.wxml</text>
+<view class='answer'>
+  <!-- 答题题目部分 -->
+  <block>
+    <view class="answerTop-first">
+      <!-- 返回首页 -->
+      <view class='returnHome' bindtap="rHome"><image class="returnHome-img" src="{{returnHomeImg}}"></image>{{returnHome}}</view>
+      <view class="answerTop-date">
+        <view class="answerTop-ymd answerTop-year">{{year}}</view>
+        <view class="answerTop-ymd answerTop-month">{{month}}</view>
+        <view class="answerTop-ymd answerTop-dat">{{day}}</view>
+      </view>
+      <image class="answerTop-img" src="{{answerTopBg}}"></image>
+      <text class='questionText'>{{questionText}}</text>
+      <text class='questionHearten'>{{questionHearten}}</text>
+      <text class='questionTorF' wx:if='{{pastIforNot==0}}'>未完成</text>
+      <text class='questionTorF questionT' wx:else>已完成</text>
+    </view>
+  </block>
+  <!-- 正题 -->
+  <block >
+
+  </block>
+</view>
