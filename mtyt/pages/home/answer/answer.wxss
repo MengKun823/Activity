@@ -128,3 +128,5 @@
 .questionT{
   background-image: linear-gradient(90deg, #0CEB6F 0%, #00CB36 100%);
 }
+
+/* 正题样式 */

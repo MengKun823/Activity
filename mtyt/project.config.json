@@ -26,7 +26,8 @@
 				{
 					"id": -1,
 					"name": "zidingyi",
-					"pathName": "pages/home/answer/answer"
+					"pathName": "pages/home/answer/answer",
+					"query": ""
 				}
 			]
 		}
