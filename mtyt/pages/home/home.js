@@ -4,10 +4,6 @@ const app = getApp()
 var util = require('../../utils/util.js')
 Page({
   data: {
-    motto: 'Hello w',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
   bindAnswerTap: function() {
