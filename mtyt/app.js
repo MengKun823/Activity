@@ -1,19 +1,14 @@
 //app.js
 var API_URL = "https://lsq-dev.neoteched.com/v2/check_login";
-var userInfo = null;
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
     // 登录
     // console.log("iv");
-
     wx.checkSession({
       success: function () {
         //session 未过期，并且在本生命周期一直有效
+        var user = wx.getStorageSync("user");
+        console.log(user);
       },
       fail: function () {
         //登录态过期
@@ -22,74 +17,10 @@ App({
             // 发送 res.code 到后台换取 openId, sessionKey, unionId
             if (res.code) {
               var code = res.code;
+              // console.log(wx.getStorageSync("token"));
               Login(code);
             } else {
               console.log('获取用户登录态失败！' + res.errMsg)
-            }
-            function Login(code) {
-              console.log('code=' + code);
-              //创建一个dialog
-              wx.showToast({
-                title: '正在登录...',
-                icon: 'loading',
-                duration: 10000
-              });
-              //请求服务器
-              wx.request({
-                url: API_URL,
-                data: {
-                  code: code
-                },
-                method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-                header: {
-                  'content-type': 'application/json'
-                }, // 设置请求的 header
-                success: function (res) {
-                  if (res.data.code == 0) {
-                    wx.setStorageSync("token", res.data.data.token);
-                    wx.getUserInfo({//getUserInfo流程
-                      success: function (res2) {//获取userinfo成功
-                        // console.log(res2);
-                        var encryptedData = res2.encryptedData;
-                        var iv = res2.iv;
-                        //请求自己的服务器
-                        wx.request({
-                          url: API_URL,
-                          method: "POST",
-                          // header: {
-                          //   'content-type': 'application/json'
-                          // },
-                          data: {
-                            token: wx.getStorageSync("token"),
-                            iv: iv,
-                            encryptedData: encryptedData
-                          },
-                          success: res3 => {
-                            userInfo = res3.data.data;
-                            console.log(userInfo);
-                            wx.setStorageSync("token", res.data.data.token);
-                          }
-                        })
-                      },
-                      fail: function () {
-                        // fail
-                        // wx.hideToast();
-                        console.log(res2);
-                      },
-                    })
-                  }
-                  wx.hideToast();
-                  // console.log(res.data);
-
-                },
-                fail: function () {
-                  // fail
-                  // wx.hideToast();
-                },
-                complete: function () {
-                  // complete
-                }
-              })
             }
           }
         })
@@ -120,3 +51,76 @@ App({
     userInfo: null
   }
 })
+
+function Login(code) {
+  console.log('code=' + code);
+  //创建一个dialog
+  wx.showToast({
+    title: '正在登录...',
+    icon: 'loading',
+    duration: 10000
+  });
+  //请求服务器
+  wx.request({
+    url: API_URL,
+    data: {
+      code: code
+    },
+    method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+    header: {
+      'content-type': 'application/json',
+      'X-Token': wx.getStorageSync("token")
+    }, // 设置请求的 header
+    success: res => {
+      if (res.data.code == 0) {
+        wx.setStorageSync("token", res.data.data.token);
+        wx.getUserInfo({//getUserInfo流程
+          success: res2 => {//获取userinfo成功
+            console.log(res2);
+            var encryptedData = res2.encryptedData;
+            var iv = res2.iv;
+            //请求自己的服务器
+            wx.request({
+              url: API_URL,
+              method: "POST",
+              header: {
+                'content-type': 'application/json',
+                'X-Token': wx.getStorageSync("token")
+              },
+              data: {
+                token: wx.getStorageSync("token"),
+                iv: iv,
+                encryptedData: encryptedData
+              },
+              success: res3 => {
+                // userInfo = res3.data.data.user;
+                // console.log(userInfo);
+                // console.log(res3);
+                wx.setStorageSync("user", res3.data.data);
+              },
+              fail: function () {
+                // fail
+                console.log(err)
+              }
+            })
+          },
+          fail: function () {
+            // fail
+            // wx.hideToast();
+            // console.log(res2);
+          },
+        })
+      }
+      wx.hideToast();
+      // console.log(res.data);
+
+    },
+    fail: function () {
+      // fail
+      // wx.hideToast();
+    },
+    complete: function () {
+      // complete
+    }
+  })
+}

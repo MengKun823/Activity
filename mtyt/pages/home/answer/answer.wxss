@@ -2,19 +2,23 @@
 .answerTop-first{
   display: block;
   width: 750rpx;
-  height: 480rpx;
-  background: #628598;
+  height: 366rpx;
+  background: rgba(0,0,0,0.6);
   position: absolute;
   top: 0;
   z-index: 10;
   text-align: center;
 }
-
+.answerTopBg{
+  display: block;
+  width: 750rpx;
+  height: 366rpx;
+}
 .answerTop-date{
   display: inline-block;
-  width: 200rpx;
-  height: 124rpx;
-  background: rgba(0,0,0,0.60);
+  width: 192rpx;
+  height: 84rpx;
+  background-color: #E7F0F5;
   border-radius: 0 0 12rpx 12rpx;
   position: absolute;
   right: 40rpx;
@@ -23,32 +27,33 @@
   display: inline-block;
   position: absolute; 
   text-align: center;
-  font-family: "PingFangSC-Regular";
-  font-size: 22rpx;
-  color: #FFFFFF;
-  letter-spacing: 0.07rpx;
+  font-family: "PingFangSC-Medium";
+  font-size: 24rpx;
+  color: #333333;
+  letter-spacing: 0.13rpx; 
 }
 .answerTop-year{  
   width: 62rpx;
   height: 40rpx;
   line-height: 40rpx;
-  top: 22rpx;
+  top: 6rpx;
   left: 28rpx;
 }
 .answerTop-month{
   width: 62rpx;
   height: 40rpx;
   line-height: 40rpx;
-  top: 62rpx;
+  top: 42rpx;
   left: 28rpx;
+  letter-spacing: 0 ;
 }
 .answerTop-dat{
-  letter-spacing: 0.16rpx;
-  font-size: 60rpx;
-  width: 70rpx;
-  height: 84rpx;
-  line-height: 84rpx;
-  top: 20rpx;
+  letter-spacing: 0.13rpx;
+  font-size: 48rpx;
+  width: 58rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  top: 10rpx;
   right: 28rpx;
 }
 .returnHome{
@@ -57,8 +62,8 @@
   height: 60rpx;
   line-height: 60rpx;
   position: absolute;
-  top: 20rpx;
-  left: 42rpx;  
+  top: 8rpx;
+  left: 30rpx;  
   font-size: 24rpx;
   font-family: 'PingFangSC-Medium';
   color: #FFFFFF;
@@ -72,61 +77,77 @@
   top: 6.5rpx;
   left: -10rpx;
 }
-.answerTop-img{
-  display: block;
-  width: 212rpx;
-  height: 212rpx;
-  position: absolute;
-  top: 134rpx;
-  left: 32rpx;
-  border-radius: 28rpx;
-}
 .questionText{
   display: inline-block;
-  width: 452rpx;
-  height: 100rpx;
-  line-height: 48rpx;
+  width: 532rpx;
+  height: 88rpx;
+  line-height: 44rpx;
   color: #ffffff;
-  font-family: 'PingFangSC-Semibold';
-  font-size: 30rpx;
-  letter-spacing: 0.16rpx;
+  font-family: 'PingFangSC-Medium';
+  font-size: 32rpx;
+  letter-spacing: 1.24rpx;
   text-align: left;
-  font-weight: 550; 
+  font-weight: 500; 
   position: absolute;
-  right: 32rpx;
-  top: 152rpx;
+  top: 124rpx;
+  left: 36rpx;
 }
 .questionHearten{
   display: inline-block;
-  width: 432rpx;
-  height: 68rpx;
-  line-height: 34rpx;
-  font-family: 'PingFangSC-Regular';
-  font-size: 24rpx;
-  color: rgba(255,255,255,0.80);
+  width: 524rpx;
+  height: 80rpx;
+  line-height: 40rpx;
+  font-family: 'PingFangSC-Medium';
+  font-size: 28rpx;
+  opacity: 0.8;
+  color: #ffffff;
   letter-spacing: 0;
   text-align: left;
   position: absolute;
-  top: 272rpx;
-  left: 266rpx;
+  top: 232rpx;
+  left: 36rpx;
 }
 .questionTorF{
   display: inline-block;
-  width: 120rpx;
-  height: 56rpx;
-  line-height: 56rpx;
-  background-image: linear-gradient(90deg, #FFC630 0%, #FFA026 100%);
-  border-radius: 8rpx;
+  width: 110rpx;
+  height: 34rpx;
+  line-height: 34rpx;
   font-family: PingFangSC-Medium;
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: #FFFFFF;
-  letter-spacing: 0.14rpx;
+  letter-spacing: 0.94rpx;
   position: absolute;
-  top: 372rpx;
-  right: 40rpx;
+  top: 306rpx;
+  right: 54rpx;
 }
 .questionT{
-  background-image: linear-gradient(90deg, #0CEB6F 0%, #00CB36 100%);
+  color: #2FC7A2;
 }
-
 /* 正题样式 */
+.choose{
+  display: block;
+  width: 132rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  background-image: linear-gradient(127deg, #1D73FF 0%, #27ADFF 100%);
+  border-radius: 24rpx;
+  font-family: 'PingFangSC-Medium';
+  font-size: 24rpx;
+  color: #FFFFFF;
+  letter-spacing: 0.94rpx;
+  text-align: center;
+  margin-top: 40rpx;
+  margin-left: 40rpx;
+}
+.topic{
+  display: flex;
+  /* justify-content: center; */
+  width: 630rpx;
+  line-height: 52rpx;
+  font-family: 'PingFangSC-Regular';
+  font-size: 30rpx;
+  color: #333333;
+  letter-spacing: 0.88rpx;
+  margin-top: 30rpx;
+  margin-left: 44rpx;
+}
