@@ -1,5 +1,9 @@
 // pages/home/answer/answer.js
-var util = require('../../../utils/util.js')
+var util = require('../../../utils/util.js');
+var ans_url = "https://lsq-dev.neoteched.com/v2/question_detail"
+var ans_data;
+var code = wx.getStorageSync("code");
+console.log(code);
 Page({
   /**
    * 页面的初始数据
@@ -24,6 +28,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.request({
+      url: ans_url,
+      data: {
+        // code: code
+        day:'2017-12-04'
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json',
+        'X-Token': wx.getStorageSync("token")
+      }, // 设置请求的 header
+      success: res => {
+        ans_data = res.data;
+        console.log(ans_data);
+      },
+      fail: e => {
+        console.log("err: " + e);
+      }
+    })
+
+
+
+
+
     var bDate = new Date();
     var year = bDate.getFullYear();
     var month = bDate.getMonth() + 1;

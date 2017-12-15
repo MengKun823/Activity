@@ -1,5 +1,7 @@
 //app.js
 var API_URL = "https://lsq-dev.neoteched.com/v2/check_login";
+var user
+var code
 App({
   onLaunch: function () {
     // 登录
@@ -7,8 +9,10 @@ App({
     wx.checkSession({
       success: function () {
         //session 未过期，并且在本生命周期一直有效
-        var user = wx.getStorageSync("user");
+        user = wx.getStorageSync("user");
+        code = wx.getStorageSync("code");
         console.log(user);
+        // console.log(code);
       },
       fail: function () {
         //登录态过期
@@ -16,7 +20,8 @@ App({
           success: res => {
             // 发送 res.code 到后台换取 openId, sessionKey, unionId
             if (res.code) {
-              var code = res.code;
+              code = res.code;
+              wx.setStorageSync("code", code);
               // console.log(wx.getStorageSync("token"));
               Login(code);
             } else {
@@ -76,7 +81,7 @@ function Login(code) {
         wx.setStorageSync("token", res.data.data.token);
         wx.getUserInfo({//getUserInfo流程
           success: res2 => {//获取userinfo成功
-            console.log(res2);
+            // console.log(res2);
             var encryptedData = res2.encryptedData;
             var iv = res2.iv;
             //请求自己的服务器
