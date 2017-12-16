@@ -21,19 +21,18 @@
   <!-- 正题 -->
   <block>
     <text class='choose'>单选题</text>
-    <text class='topic'>甲丙公司约定向乙公司共同购买一批精密仪器，该合同由甲、乙、丙公司的法定代表人签字，甲、丙公司加盖了合同专用章，乙公司却未加盖合同专用章。丙公司签订上述合同后，为筹措资金向丁银行借款300万元，丁银行要求提供担保，丙公司请求戊公司进行担保，戊公司允诺。三方约定，丁银行借给丙公司300万元，预扣一年的利息30万元，实际交付丙公司270万元，由戊公司提供保证。丙公司和戊公司同时约定，戊公司承担保证责任，但丙公司应该付给戊公司担保费30万元。对此，下列哪一项是正确的？</text>
+    <text class='topic'>{{context}}</text>
     <!-- 正题选项部分 -->
     <view class='ansOptionBg'>
-      <view class='ansOption'><view class='optionText'>A</view><view class='ansText'>文字由于乙公司没有在合同上加盖专
-用章，因此实际上合同并没有成立</view></view>
-      <view class='ansOption'><view class='optionText'>B</view><view class='ansText'>保证人和债务人之间约定担保费用的
-做法</view></view>
-      <view class='ansOption'><view class='optionText'>C</view><view class='ansText'>戊公司应当承担一般的保证责任</view></view>
-      <view class='ansOption'><view class='optionText'>D</view><view class='ansText'>甲乙之间的借款实际上是无效的</view></view>
+      <view class='ansOption'><view class='optionText'>A</view><view class='ansText'>{{A}}</view></view>
+      <view class='ansOption'><view class='optionText'>B</view><view class='ansText'>{{B}}</view></view>
+      <view class='ansOption'><view class='optionText'>C</view><view class='ansText'>{{C}}</view></view>
+      <view class='ansOption'><view class='optionText'>D</view><view class='ansText'>{{D}}</view></view>
     </view>
     <!-- 提交按钮 -->
-    <view class='putBg'>
+    <view class='putBg' wx:if="{{hasDone == 0}}">
       <button class='putIn' type='prinary' hover-class='button-hover'>提交</button>
     </view>
+    <view class='analysis' wx:else></view>
   </block>
 </view>

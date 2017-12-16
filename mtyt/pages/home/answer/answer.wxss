@@ -78,9 +78,11 @@
   left: -10rpx;
 }
 .questionText{
-  display: inline-block;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10rpx 0;
   width: 532rpx;
-  height: 88rpx;
   line-height: 44rpx;
   color: #ffffff;
   font-family: 'PingFangSC-Medium';

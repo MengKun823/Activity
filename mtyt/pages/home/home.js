@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 var util = require('../../utils/util.js')
+var ans_url = "https://lsq-dev.neoteched.com/v2/question_detail"
 Page({
   data: {
   },
@@ -9,7 +10,25 @@ Page({
   bindAnswerTap: function() {
     wx.navigateTo({
       url: './answer/answer',
-    })
+    }),
+      wx.request({
+        url: ans_url,
+        data: {
+          // code: code
+          day: '2017-12-04'
+        },
+        method: 'GET',
+        header: {
+          'content-type': 'application/json',
+          'X-Token': wx.getStorageSync("token")
+        }, // 设置请求的 header
+        success: res => {
+          console.log("success");
+        },
+        fail: e => {
+          console.log("err: " + e);
+        }
+      })
   }, 
   bindMineTap: function () {
     wx.reLaunch({
