@@ -189,6 +189,10 @@
   margin-left: 34rpx;
   margin-right: 32rpx;
 }
+.optionTextBg{
+  background-image: linear-gradient(136deg, #1D73FF 0%, #27ADFF 100%);
+  color: #ffffff;
+}
 .ansText{
   width: 527rpx;
   font-family: 'PingFangSC-Regular';

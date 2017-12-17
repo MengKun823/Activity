@@ -1,8 +1,12 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var util = require('../../utils/util.js')
-var ans_url = "https://lsq-dev.neoteched.com/v2/question_detail"
+var util = require('../../utils/util.js');
+var home_url = "https://lsq-dev.neoteched.com/v2/home";
+var ansData;
+var arrDay;
+var year, month, day;
+var ans_url = "https://lsq-dev.neoteched.com/v2/question_detail";
 Page({
   data: {
   },
@@ -52,68 +56,67 @@ Page({
     }
   },
   onLoad: function () {
-    var bDate = new Date();
-    var year = bDate.getFullYear();
-    var month = bDate.getMonth() + 1;
-    var day = bDate.getDate();
-    if (month < 10) {
-      month = '0' + month;
-    };
-    if (day < 10) {
-      day = '0' + day;
-    };
-    this.setData({
-      year: year,
-      month: month+' '+'月',
-      day: day,
-      questionText: '司考史上，出题率最高的一道题快来试一试！',
-      questionNum: 100+'人已答题',
-      questionToAnswer: '去答题' + ' ' + '>',
-      pastIforNot: 0,
-      pastRecords: [{
-        unique: 'unique_1',
-        pastTopic: '想在考试中活的400分?先把这道题吃掉吧',
-        pastDate: '2017年11月30日',
-        pastImage: '../../image/suzhi.jpg',
-        pastAnswerPeople: 198 + '人已答题',
-        pastIforNot: 1
-      },{
-        unique: 'unique_2',
-        pastTopic: '百分之百的真题，历年考试率百分之95',
-        pastDate: '2017年11月29日',
-        pastImage: '../../image/suzhi.jpg',
-        pastAnswerPeople: 1112 + '人已答题',
-        pastIforNot: 0
-        },{
-          unique: 'unique_3',
-          pastTopic: '想在考试中活的400分?先把这道题吃掉吧',
-          pastDate: '2017年11月30日',
-          pastImage: '../../image/suzhi.jpg',
-          pastAnswerPeople: 198 + '人已答题',
-          pastIforNot: 1
-      },{
-        unique: 'unique_4',
-        pastTopic: '想在考试中活的400分?先把这道题吃掉吧',
-        pastDate: '2017年11月30日',
-        pastImage: '../../image/suzhi.jpg',
-        pastAnswerPeople: 198 + '人已答题',
-        pastIforNot: 1
-        },{
-          unique: 'unique_5',
-          pastTopic: '百分之百的真题，历年考试率百分之95',
-          pastDate: '2017年11月29日',
-          pastImage: '../../image/suzhi.jpg',
-          pastAnswerPeople: 1112 + '人已答题',
-          pastIforNot: 0
-      },{
-        unique: 'unique_6',
-        pastTopic: '想在考试中活的400分?先把这道题吃掉吧',
-        pastDate: '2017年11月30日',
-        pastImage: '../../image/suzhi.jpg',
-        pastAnswerPeople: 198 + '人已答题',
-        pastIforNot: 1
-      }]
-    });
+    // var year = bDate.getFullYear();
+    // var month = bDate.getMonth() + 1;
+    // var day = bDate.getDate();
+    // if (month < 10) {
+    //   month = '0' + month;
+    // };
+    // if (day < 10) {
+    //   day = '0' + day;
+    // };
+    // this.setData({
+    //   year: year,
+    //   month: month+' '+'月',
+    //   day: day,
+    //   questionText: '司考史上，出题率最高的一道题快来试一试！',
+    //   questionNum: 100+'人已答题',
+    //   questionToAnswer: '去答题' + ' ' + '>',
+    //   pastIforNot: 0,
+    //   pastRecords: [{
+    //     unique: 'unique_1',
+    //     pastTopic: '想在考试中活的400分?先把这道题吃掉吧',
+    //     pastDate: '2017年11月30日',
+    //     pastImage: '../../image/suzhi.jpg',
+    //     pastAnswerPeople: 198 + '人已答题',
+    //     pastIforNot: 1
+    //   },{
+    //     unique: 'unique_2',
+    //     pastTopic: '百分之百的真题，历年考试率百分之95',
+    //     pastDate: '2017年11月29日',
+    //     pastImage: '../../image/suzhi.jpg',
+    //     pastAnswerPeople: 1112 + '人已答题',
+    //     pastIforNot: 0
+    //     },{
+    //       unique: 'unique_3',
+    //       pastTopic: '想在考试中活的400分?先把这道题吃掉吧',
+    //       pastDate: '2017年11月30日',
+    //       pastImage: '../../image/suzhi.jpg',
+    //       pastAnswerPeople: 198 + '人已答题',
+    //       pastIforNot: 1
+    //   },{
+    //     unique: 'unique_4',
+    //     pastTopic: '想在考试中活的400分?先把这道题吃掉吧',
+    //     pastDate: '2017年11月30日',
+    //     pastImage: '../../image/suzhi.jpg',
+    //     pastAnswerPeople: 198 + '人已答题',
+    //     pastIforNot: 1
+    //     },{
+    //       unique: 'unique_5',
+    //       pastTopic: '百分之百的真题，历年考试率百分之95',
+    //       pastDate: '2017年11月29日',
+    //       pastImage: '../../image/suzhi.jpg',
+    //       pastAnswerPeople: 1112 + '人已答题',
+    //       pastIforNot: 0
+    //   },{
+    //     unique: 'unique_6',
+    //     pastTopic: '想在考试中活的400分?先把这道题吃掉吧',
+    //     pastDate: '2017年11月30日',
+    //     pastImage: '../../image/suzhi.jpg',
+    //     pastAnswerPeople: 198 + '人已答题',
+    //     pastIforNot: 1
+    //   }]
+    // });
     // console.log(time);
     if (app.globalData.userInfo) {
       this.setData({
