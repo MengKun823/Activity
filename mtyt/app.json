@@ -2,17 +2,18 @@
   "pages": [
     "pages/home/home",
     "pages/mine/mine",
-    "pages/home/answer/answer"
+    "pages/home/answer/answer",
+    "pages/mine/remind/remind"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "深蓝 每天刷道题",
+    "navigationBarTitleText": "法考天天练",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#7A7E83",
-    "selectedColor": "#14BDF6",
+    "selectedColor": "#1D73FF",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [

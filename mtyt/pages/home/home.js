@@ -1,156 +1,157 @@
 //index.js
+var Login = require('../../utils/login.js');
 //获取应用实例
 const app = getApp()
 var util = require('../../utils/util.js');
-var home_url = "https://lsq-dev.neoteched.com/v2/home";
-var ansData;
+var home_url = "https://ma.shenlancity.com/v2/home";
+var questionData;
 var arrDay;
 var year, month, day;
-var ans_url = "https://lsq-dev.neoteched.com/v2/question_detail";
+var ans_url = "https://ma.shenlancity.com/v2/question_detail";
+var dayTop = {};
 Page({
   data: {
+    showMask: true
   },
   //事件处理函数
-  bindAnswerTap: function() {
-    wx.navigateTo({
-      url: './answer/answer',
-    }),
-      wx.request({
-        url: ans_url,
-        data: {
-          // code: code
-          day: '2017-12-04'
-        },
-        method: 'GET',
-        header: {
-          'content-type': 'application/json',
-          'X-Token': wx.getStorageSync("token")
-        }, // 设置请求的 header
-        success: res => {
-          console.log("success");
-        },
-        fail: e => {
-          console.log("err: " + e);
+  showMask: function() {
+    wx.getSetting({
+      success: (res) => {
+        console.log
+        if (res.authSetting["scope.userInfo"] == false){
+          wx.showModal({
+            title: '温馨提示',
+            content: '检测到授权未成功，请前往开启授权，以保证功能的正常使用',
+            showCancel: false,
+            confirmText: "开启授权",
+            success: resBtn => {
+              wx.openSetting({
+                success: (resT) => {
+                  if (resT.authSetting["scope.userInfo"] == true) {
+                    Login.Login(home_url, (res, bool) => {
+                      //  console.log("success");
+                      questionData = res.data.data;
+                      var days = questionData.top[0].show_day;
+                      arrDay = days.split("-");
+                      year = arrDay[0];
+                      month = arrDay[1];
+                      day = arrDay[2];
+                      console.log(bool)
+                      if (!bool) {
+                        this.setData({
+                          showMask: false
+                        });
+                      }
+                      this.setData({
+                        year: year,
+                        month: month + ' ' + '月',
+                        day: day,
+                        days: days,
+                        questionText: questionData.top[0].title,
+                        questionBg: questionData.top[0].picture_url,
+                        questionNum: questionData.top[0].user_answer_num + '人已答题',
+                        questionToAnswer: '去答题' + ' ' + '>',
+                        pastIforNot: questionData.top[0].has_done,
+                        pastRecords: questionData.body
+                      });
+                    }, 'GET', {}, {
+                      'content-type': 'application/json',
+                      'X-Token': wx.getStorageSync("token")
+                    })
+                  }
+                }
+              })
+            }
+          })
         }
-      })
+      }
+    })
+  },
+  bindAnswerTap: function() {
+    var dayTop = this.data.days;
+    // console.log(dayTop)
+    wx.navigateTo({
+      url: './answer/answer?days=' + dayTop,
+    })
+  }, 
+  bindAnswerTap2: function (item) {
+    var dayTop2 = item.currentTarget.dataset.days;
+    // console.log(dayTop2)
+    wx.navigateTo({
+      url: './answer/answer?days=' + dayTop2,
+    })
   }, 
   bindMineTap: function () {
     wx.reLaunch({
       url: '../mine/mine',
     })
   },
-  onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
+  homeSubmit:function(e){
+    console.log(e.detail);
+  },
+  onLoad: function () {
+    // this.getDataHome();
+  },
+  onShow: function() {
+    Login.Login(home_url, (res, bool) => {
+      //  console.log("success");
+      questionData = res.data.data;
+      var days = questionData.top[0].show_day;
+      arrDay = days.split("-");
+      year = arrDay[0];
+      month = arrDay[1];
+      day = arrDay[2];
+      // console.log(bool)
+      if (!bool) {
+        this.setData({
+          showMask: false
+        });
+      }
+      this.setData({
+        year: year,
+        month: month + ' ' + '月',
+        day: day,
+        days: days,
+        questionText: questionData.top[0].title,
+        questionBg: questionData.top[0].picture_url,
+        questionNum: questionData.top[0].user_answer_num + '人已答题',
+        questionToAnswer: '去答题',
+        pastIforNot: questionData.top[0].has_done,
+        pastRecords: questionData.body
+      });
+    }, 'GET', {}, {
+        'content-type': 'application/json',
+        'X-Token': wx.getStorageSync("token")
+      })
+  },
+  //转发分享
+  onShareAppMessage: function () {
     return {
-      title: '自定义转发标题',
-      path: '../mine/mine',
+      title: '每天一道题，搞定一个知识点',
+      path: '/pages/home/home',
       success: function (res) {
-        // 转发成功
+        wx.showToast({
+          title: '转发成功',
+          icon: 'success',
+          duration: 2000
+        })
       },
       fail: function (res) {
         // 转发失败
-      }
-    }
-  },
-  onLoad: function () {
-    // var year = bDate.getFullYear();
-    // var month = bDate.getMonth() + 1;
-    // var day = bDate.getDate();
-    // if (month < 10) {
-    //   month = '0' + month;
-    // };
-    // if (day < 10) {
-    //   day = '0' + day;
-    // };
-    // this.setData({
-    //   year: year,
-    //   month: month+' '+'月',
-    //   day: day,
-    //   questionText: '司考史上，出题率最高的一道题快来试一试！',
-    //   questionNum: 100+'人已答题',
-    //   questionToAnswer: '去答题' + ' ' + '>',
-    //   pastIforNot: 0,
-    //   pastRecords: [{
-    //     unique: 'unique_1',
-    //     pastTopic: '想在考试中活的400分?先把这道题吃掉吧',
-    //     pastDate: '2017年11月30日',
-    //     pastImage: '../../image/suzhi.jpg',
-    //     pastAnswerPeople: 198 + '人已答题',
-    //     pastIforNot: 1
-    //   },{
-    //     unique: 'unique_2',
-    //     pastTopic: '百分之百的真题，历年考试率百分之95',
-    //     pastDate: '2017年11月29日',
-    //     pastImage: '../../image/suzhi.jpg',
-    //     pastAnswerPeople: 1112 + '人已答题',
-    //     pastIforNot: 0
-    //     },{
-    //       unique: 'unique_3',
-    //       pastTopic: '想在考试中活的400分?先把这道题吃掉吧',
-    //       pastDate: '2017年11月30日',
-    //       pastImage: '../../image/suzhi.jpg',
-    //       pastAnswerPeople: 198 + '人已答题',
-    //       pastIforNot: 1
-    //   },{
-    //     unique: 'unique_4',
-    //     pastTopic: '想在考试中活的400分?先把这道题吃掉吧',
-    //     pastDate: '2017年11月30日',
-    //     pastImage: '../../image/suzhi.jpg',
-    //     pastAnswerPeople: 198 + '人已答题',
-    //     pastIforNot: 1
-    //     },{
-    //       unique: 'unique_5',
-    //       pastTopic: '百分之百的真题，历年考试率百分之95',
-    //       pastDate: '2017年11月29日',
-    //       pastImage: '../../image/suzhi.jpg',
-    //       pastAnswerPeople: 1112 + '人已答题',
-    //       pastIforNot: 0
-    //   },{
-    //     unique: 'unique_6',
-    //     pastTopic: '想在考试中活的400分?先把这道题吃掉吧',
-    //     pastDate: '2017年11月30日',
-    //     pastImage: '../../image/suzhi.jpg',
-    //     pastAnswerPeople: 198 + '人已答题',
-    //     pastIforNot: 1
-    //   }]
-    // });
-    // console.log(time);
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
+        if (res.errMsg == "shareAppMessage:fail cancel") {
+          wx.showToast({
+            title: '取消转发',
+            image: '../../image/erro.svg',
+            duration: 2000
+          })
+        } else {
+          wx.showToast({
+            title: '转发失败',
+            image: '../../image/erro.svg',
+            duration: 2000
           })
         }
-      })
+      }
     }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
   }
 })
