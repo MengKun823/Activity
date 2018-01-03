@@ -1,7 +1,5 @@
-//logs.js
-// const util = require('../../utils/util.js')
-
 // 'use strict';
+const app = getApp();
 let choose_year = null,
     choose_month = null;
 const conf = {
@@ -238,9 +236,16 @@ const conf = {
     let questionStatData;
     let that = this;
     let startDay = that.data.cur_year + "-" + that.data.cur_month + "-" + "01";
-    let endDay = that.data.cur_year + "-" + that.data.cur_month + "-" + that.data.thisDay;
+    let endDay
+    if (that.data.cur_year == that.data.thisYear && that.data.cur_month == that.data.thisMonth){
+      endDay = that.data.cur_year + "-" + that.data.cur_month + "-" + that.data.thisDay;
+    } else if (that.data.cur_year < that.data.thisYear){
+      endDay = that.data.cur_year + "-" + that.data.cur_month + "-" + that.data.days.length;
+    }
+    // console.log(that.data);
+    // console.log(endDay);
     wx.request({
-      url: "https://ma.shenlancity.com/v2/user",
+      url: app.globalData.hostName + "/v2/user",
       method:"GET",
       header: {
         'content-type': 'application/json',
@@ -257,7 +262,7 @@ const conf = {
         })
         // console.log(that.data);
 
-        that.noAnswerDay(that.data.thisDay);
+        that.noAnswerDay(endDay);
         let answeredDays = [];
         for (let item of questionStatData) {
           answeredDays.push(parseInt(item.show_day.split('-')[2]))
@@ -296,10 +301,12 @@ const conf = {
       //当前年份相等
       if (this.data.thisMonth < this.data.cur_month){
         //同年大于当前月份
+        console.log("未来日期，什么都不显示");
       } else if (this.data.thisMonth == this.data.cur_month){
         //同年等于当前月份
-        if (this.data.cur_year == 2017 && this.data.cur_month == 12){
-         for (let i = 21; i < endDay; i++) {
+        if (this.data.cur_year > 2017){
+        // 当前年与显示年份相同时，且显示年份大于2017，则显示当月已经到达天数；
+          for (let i = 0; i < this.data.thisDay; i++) {
             days[i].noAnswer = true;
             days[i].showShare = true;
           }
@@ -307,17 +314,24 @@ const conf = {
       } else{
         // 同年小于当前月份
         if (this.data.cur_year > 2017){
-          endDay = this.data.days.length;
-          for (let i = 0; i < endDay; i++) {
+          // 当前年与显示年份相同时，且显示年份大于2017小于当前月份，则显示所在月份全部数据；
+          for (let i = 0; i < this.data.days.length; i++) {
             days[i].noAnswer = true;
             days[i].showShare = true;
           }
         }
       }
     } else if (this.data.thisYear > this.data.cur_year) {
-      if (this.data.cur_year > 2017){
-        endDay = this.data.days.length;
-        for (let i = 0; i < endDay; i++) {
+      // 当前年份大于显示年份
+      if (this.data.cur_year == 2017 && this.data.cur_month == 12) {
+        // 当所显示年份为2017年且月份为十二月时显示的天数
+        for (let i = 21; i < this.data.days.length; i++) {
+          days[i].noAnswer = true;
+          days[i].showShare = true;
+        }
+      }else if (this.data.cur_year > 2017){
+        // 当当前年份大于显示年份，且显示年份大于2017年时，则当前最少为2019年，则18年全年显示所有数据
+        for (let i = 0; i < this.data.days.length; i++) {
           days[i].noAnswer = true;
           days[i].showShare = true;
         }

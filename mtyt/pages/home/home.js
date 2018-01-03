@@ -3,11 +3,12 @@ var Login = require('../../utils/login.js');
 //获取应用实例
 const app = getApp()
 var util = require('../../utils/util.js');
-var home_url = "https://ma.shenlancity.com/v2/home";
+console.log(app.globalData.hostName);
+var home_url = app.globalData.hostName + "/v2/home";
 var questionData;
 var arrDay;
 var year, month, day;
-var ans_url = "https://ma.shenlancity.com/v2/question_detail";
+var ans_url = app.globalData.hostName + "/v2/question_detail";
 var dayTop = {};
 Page({
   data: {
@@ -87,7 +88,22 @@ Page({
     })
   },
   homeSubmit:function(e){
-    console.log(e.detail);
+    let formId = e.detail.formId;
+    // 一会封装
+    wx.request({
+      url: app.globalData.hostName + "/v2/form_id",
+      method:"POST",
+      header:{
+        'content-type': 'application/json',
+        'X-Token': wx.getStorageSync("token")
+      },
+      data:{
+        form_id: formId
+      },
+      success: resSub=>{
+        console.log("formId传送成功");
+      }
+    })
   },
   onLoad: function () {
     // this.getDataHome();

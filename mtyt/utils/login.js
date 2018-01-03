@@ -1,6 +1,5 @@
-var API_URL = "https://ma.shenlancity.com/v2/check_login";
-var getData = getApp();
-// console.log(getData.globalData.showMask)
+var app = getApp();
+var API_URL = app.globalData.hostName + "/v2/check_login";
 var loginTime=0
 function Login(url, sucessCallback, method,data, header) {
   method = method || "GET";
@@ -71,7 +70,7 @@ function getToken(code, url, sucessCallback, method,data, header) {
               },
               success: res3 => {
                 wx.setStorageSync("user", res3.data.data);
-                console.log(res3.data.code)
+                console.log(res3)
                 if(res3.data.code==0){
                   if (res3.data.data.id) {
                     ajax(url, sucessCallback, method, data, {
