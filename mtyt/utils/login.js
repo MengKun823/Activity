@@ -162,7 +162,25 @@ function ajax(url, sucessCallback, method,data, header,bool) {
   })
 }
 
+//封装传formId
+function getFormId (formId){
+  wx.request({
+    url: app.globalData.hostName + "/v2/form_id",
+    method: "POST",
+    header: {
+      'content-type': 'application/json',
+      'X-Token': wx.getStorageSync("token")
+    },
+    data: {
+      form_id: formId
+    },
+    success: resSub => {
+      console.log("formId传送成功");
+    }
+  })
+}
 module.exports ={
 Login:Login,
-ajax:ajax
+ajax:ajax,
+getFormId: getFormId
 } ;

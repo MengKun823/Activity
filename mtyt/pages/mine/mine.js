@@ -1,5 +1,6 @@
 // 'use strict';
 const app = getApp();
+let Login = require('../../utils/login.js');
 let choose_year = null,
     choose_month = null;
 const conf = {
@@ -216,7 +217,8 @@ const conf = {
     })
   },
   AnswerTap:function(e){
-    console.log(e.detail);
+    let formId = e.detail.formId;
+    Login.getFormId(formId);
   },
   //点击已答题或者忘记答题跳转
   bindAnswerTap: function (e) {

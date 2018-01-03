@@ -3,7 +3,7 @@ var Login = require('../../utils/login.js');
 //获取应用实例
 const app = getApp()
 var util = require('../../utils/util.js');
-console.log(app.globalData.hostName);
+// console.log(app.globalData.hostName);
 var home_url = app.globalData.hostName + "/v2/home";
 var questionData;
 var arrDay;
@@ -89,21 +89,7 @@ Page({
   },
   homeSubmit:function(e){
     let formId = e.detail.formId;
-    // 一会封装
-    wx.request({
-      url: app.globalData.hostName + "/v2/form_id",
-      method:"POST",
-      header:{
-        'content-type': 'application/json',
-        'X-Token': wx.getStorageSync("token")
-      },
-      data:{
-        form_id: formId
-      },
-      success: resSub=>{
-        console.log("formId传送成功");
-      }
-    })
+    Login.getFormId(formId);
   },
   onLoad: function () {
     // this.getDataHome();

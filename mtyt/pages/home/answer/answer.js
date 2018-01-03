@@ -91,23 +91,20 @@ Page({
                 }
               }
             })
-
-
-
           }
         })
       },
       fail: function(){
         wx.showToast({
           title: '未获取到图片信息',
-          // icon: "success",
           duration: 1500
         })
       }
     })
   },
   answerSub: function (e) {
-    // console.log(e);
+    let formId = e.detail.formId;
+    Login.getFormId(formId);
   },
   rHome: function () {
     wx.switchTab({
@@ -216,79 +213,73 @@ Page({
   getdata: function(){
     var that = this;
     Login.Login(ans_url, res => {
-      // wx.showToast({
-      //   title: '成功',
-      //   icon: 'loading',
-      //   duration: 10000
-      // });
-         ansData = res.data.data;
-         // console.log(res);
-         var days = ansData.show_day;
-         arrDay = days.split("-");
-         year = arrDay[0];
-         month = arrDay[1];
-         day = arrDay[2];
-         // ansData.question_content.type = 2
+        ansData = res.data.data;
+        var days = ansData.show_day;
+        arrDay = days.split("-");
+        year = arrDay[0];
+        month = arrDay[1];
+        day = arrDay[2];
+          // ansData.question_content.type = 2
         let questionTypeTit = "单选题"
-         if (ansData.question_content.type == 2) {
-           questionTypeTit = '多选题'
-         }
+        if (ansData.question_content.type == 2) {
+          questionTypeTit = '多选题'
+        }
 
-         // console.log(ansData);
-         var oArr = ["a","b","c","d"];
-         var uArr = ansData.user_options;
+          // console.log(ansData);
+        var oArr = ["a","b","c","d"];
+        var uArr = ansData.user_options;
         var cArr = ansData.question_content.question.correctOption;
-         let n = 0;
+        let n = 0;
 
-         for(let i of oArr){
-           //在用户，在正确
-           if( (uArr.indexOf(i)!=-1) && (cArr.indexOf(i)!=-1)){
-             that.data.correctOption[i] = 1;
-             // console.log(i);
-           } else if ((uArr.indexOf(i) != -1) && (cArr.indexOf(i) == -1)){
-             //在用户，不在正确
-             //设置红色块
-             that.data.correctOption[i] = 2;
+        for(let i of oArr){
+          //在用户，在正确
+          if( (uArr.indexOf(i)!=-1) && (cArr.indexOf(i)!=-1)){
+            that.data.correctOption[i] = 1;
+            // console.log(i);
+          } else if ((uArr.indexOf(i) != -1) && (cArr.indexOf(i) == -1)){
+            //在用户，不在正确
+            //设置红色块
+            that.data.correctOption[i] = 2;
           } else if ((uArr.indexOf(i) == -1) && (cArr.indexOf(i) != -1)){
-             //不在用户，在正确
-             that.data.correctOption[i] = 3;
-           } else {
-             //不在用户，不在正确
-             that.data.correctOption[i] = 0;
-           }
-           n++;
-         }
-         //是否完成
-         let hasDone = ansData.has_done;
-         //正确答案
-         // ansData.question_content.question.correctOption
-         let questionTure = ansData.question_content.question.correctOption.join("").toUpperCase();
-             // console.log(ansData.easy_error_option);
-         let fallibility = ansData.easy_error_option.toUpperCase();
-         //生成海报
-         that.setData({
-           ansData: res.data.data,
-           day: day,
-           month: month,
-           year: year,
-           answerTopBg: ansData.picture_url,
-           questionText: ansData.title,
-           context: ansData.question_content.question.context,
-           A: ansData.question_content.question.a,
-           B: ansData.question_content.question.b,
-           C: ansData.question_content.question.c,
-           D: ansData.question_content.question.d,
-           hasDone: hasDone,
-           questionType: ansData.question_content.type,
-           questionTypeTit: questionTypeTit,
+            //不在用户，在正确
+            that.data.correctOption[i] = 3;
+          } else {
+            //不在用户，不在正确
+            that.data.correctOption[i] = 0;
+          }
+          n++;
+        }
+        //是否完成
+        let hasDone = ansData.has_done;
+        //正确答案
+        // ansData.question_content.question.correctOption
+        let questionTure = ansData.question_content.question.correctOption.join("").toUpperCase();
+            // console.log(ansData.easy_error_option);
+        let fallibility = ansData.easy_error_option.toUpperCase();
+        //生成海报
+        that.setData({
+          ansData: res.data.data,
+          day: day,
+          month: month,
+          year: year,
+          answerTopBg: ansData.picture_url,
+          questionText: ansData.title,
+          context: ansData.question_content.question.context,
+          A: ansData.question_content.question.a,
+          B: ansData.question_content.question.b,
+          C: ansData.question_content.question.c,
+          D: ansData.question_content.question.d,
+          hasDone: hasDone,
+          questionType: ansData.question_content.type,
+          questionTypeTit: questionTypeTit,
           questionTure: questionTure,//正确答案
-           explanation: ansData.question_content.question.explanation,
-           correctRate: ansData.correct_rate,
-           fallibility: fallibility,//易错项
-           question_id: ansData.question_id,
-           correctOption: that.data.correctOption
-         });
-         // console.log(this.data)
+          explanation: ansData.question_content.question.explanation,
+          correctRate: ansData.correct_rate,
+          fallibility: fallibility,//易错项
+          question_id: ansData.question_id,
+          correctOption: that.data.correctOption
+        });
+        // console.log(this.data)
     }, 'GET', {
          day: that.options.days
        },{

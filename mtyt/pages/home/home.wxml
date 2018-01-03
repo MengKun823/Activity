@@ -40,4 +40,4 @@
     </view>
   </form>
   <view class='more' bindtap='bindMineTap'>查看更多</view><!-- 查看更多 -->
-</view>               
+</view>
