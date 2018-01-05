@@ -1,6 +1,7 @@
 // pages/mine/remind/remind.js
 //设置获取提醒时间url
-var notice_url = 'https://lsq-dev.neoteched.com/v2/notice';
+const app = getApp()
+var notice_url = app.globalData.hostName + '/v2/notice';
 Page({
   /**
    * 页面的初始数据
@@ -12,7 +13,7 @@ Page({
     let hour = e.detail.value;
     let min = parseInt(hour.substring(3, 5));
     hour = parseInt(hour.substring(0, 2));
-    console.log(hour);
+    console.log(hour+":"+min);
     this.setData({
       time: e.detail.value,
     });
@@ -52,12 +53,15 @@ Page({
       },
       data: {},
       success: res=>{
-        console.log(res.data.data);
+        console.log(res.data);
         let hours = res.data.data.hour;
         let mins = res.data.data.min
-        if("0"<= hours < "10") {
+        if ("0" <= hours && hours < "10") {
           hours = "0"+hours;
-        }
+        };
+        if ("0" <= mins && mins < "10"){
+          mins = "0" + mins;
+        };
         that.setData({
           time: hours + ":" + mins
         })
@@ -115,6 +119,32 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '每天一道题，搞定一个考点',
+      path: '/pages/home/home',
+      success: function (res) {
+        wx.showToast({
+          title: '转发成功',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+        if (res.errMsg == "shareAppMessage:fail cancel") {
+          wx.showToast({
+            title: '取消转发',
+            image: '../../image/erro.svg',
+            duration: 2000
+          })
+        } else {
+          wx.showToast({
+            title: '转发失败',
+            image: '../../image/erro.svg',
+            duration: 2000
+          })
+        }
+      }
+    }
   }
 })

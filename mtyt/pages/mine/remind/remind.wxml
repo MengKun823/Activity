@@ -5,10 +5,10 @@
     <view class="remindLabel">提醒</view>
     <!-- 时间点击 -->
     <form bindsubmit='formSubmitBtn' report-submit="true">
-      <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange" >
+      <picker class='remindBtn' mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange" >
         <view class="remindInput">{{time}}</view>
       </picker>
-      <button form-type='submit' class='inputTime'></button> 
+      <!-- <button form-type='submit' class='inputTime'></button>  -->
     </form>
   </view>
 </view>

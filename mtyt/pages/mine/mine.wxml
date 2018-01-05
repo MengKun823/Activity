@@ -10,11 +10,12 @@
     </view>
     <view class="haveTheAnswer">
       <view>已经完成</view>
-      <view class='answerDays'>{{total + "题"}}</view>
+      <view class='answerDays'>{{total + "天"}}</view>
     </view>
-    <view class="theSetUpButton"> <!-- bindtap='btnRemind' -->
-      <!-- <image src='../../image/remind.png' class='theSetUpBut' />
-      <view class='theSetUp'>设置</view>  -->
+    <view class="theSetUpButton" bindtap='btnRemind'>
+      <image src='../../image/remind.png' class='theSetUpBut' />
+      <view class='theSetUp'>设置</view>
+      <image src='../../image/dot.svg' class='dot' bindtap='btnRemind' wx:if="{{mine_dot == ''}}"></image>
     </view> 
   </view>
   <!-- 日历组件 -->

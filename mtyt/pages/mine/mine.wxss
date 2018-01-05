@@ -49,20 +49,22 @@
 }
 .theSetUpButton{
   display: flex;
-  width: 84rpx;
+  width: 100rpx;
+  height: 60rpx;
   justify-content: space-around;
   align-items: center;
+  margin-top: 50rpx;
+  position: relative;
 }
 .theSetUpBut{
-  width: 28rpx;
-  height: 28rpx;
+  width: 32rpx;
+  height: 32rpx;
 }
 .theSetUp{
   font-family: 'PingFangSC-Medium';
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #999999;
   letter-spacing: 0.94rpx;
-  margin-left: 6rpx;
 }
 .calendarWrap {
   width: 100%;
@@ -395,4 +397,12 @@ button::after{
 .picker-view {
 	color:#FF7CA0;
 	text-align: center;
+}
+.dot{
+  display: inline-block;
+  width:40rpx;
+  height:40rpx;
+  position: absolute;
+  top: -10rpx;
+  right: -11rpx;
 }

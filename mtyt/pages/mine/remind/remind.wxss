@@ -8,6 +8,7 @@
 }
 .remindText{
   font-family: 'PingFangSC-Regular';
+  width: 500rpx;
   font-size: 28rpx;
   color: rgba(0,0,0,0.40);
   letter-spacing: 0.14rpx;
@@ -32,7 +33,16 @@
   margin-left: 40rpx;
 }
 .remindInput{
-  margin-right: 80rpx;
+  display: inline-block;
+  width: 100rpx;
+  height: 90rpx;
   color: #14BDF6;
   font-family: 'PingFangSC-Medium';
+}
+.remindBtn{
+  display: inline-block;
+  width: 100rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin-right: 20rpx;
 }

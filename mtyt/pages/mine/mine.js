@@ -45,13 +45,15 @@ const conf = {
     const cur_month = date.getMonth() + 1;
     const cer_day = date.getDate();
     const weeks_ch = ['日', '一', '二', '三', '四', '五', '六'];
+    let mine_dot = wx.getStorageSync("mine_dot");
     this.setData({
       thisYear: cur_year,
       thisMonth: cur_month,
       thisDay: cer_day,
       cur_year,
       cur_month,
-      weeks_ch
+      weeks_ch,
+      mine_dot: mine_dot
     })
     this.calculateEmptyGrids(cur_year, cur_month);
     this.calculateDays(cur_year, cur_month);
@@ -212,9 +214,10 @@ const conf = {
   },
   //点击设置跳转设置页面
   btnRemind: function() {
-    wx.reLaunch({
+    wx.navigateTo({
       url: './remind/remind',
     })
+    wx.setStorageSync("mine_dot", 1);
   },
   AnswerTap:function(e){
     let formId = e.detail.formId;
