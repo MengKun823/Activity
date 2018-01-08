@@ -7,7 +7,7 @@ App({
   globalData: {
     userInfo: null,
     showMask:true,
-    hostName:"https://ma.shenlancity.com",
+    hostName:"https://tony-alpha.neoteched.com",
     tokenA: wx.getStorageSync("token")
   }
 })

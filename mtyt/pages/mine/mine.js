@@ -306,7 +306,7 @@ const conf = {
       //当前年份相等
       if (this.data.thisMonth < this.data.cur_month){
         //同年大于当前月份
-        console.log("未来日期，什么都不显示");
+        // console.log("未来日期，什么都不显示");
       } else if (this.data.thisMonth == this.data.cur_month){
         //同年等于当前月份
         if (this.data.cur_year > 2017){

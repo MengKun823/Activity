@@ -221,10 +221,9 @@ button::after{
 }
 .ansOption{
   margin: 0;
-  padding: 0;
   display: flex; 
   width: 710rpx;
-  padding: 20rpx 0;
+  padding: 20rpx 0; 
   line-height: 40rpx;
   align-items: center;
   border-radius: 20rpx;
@@ -383,4 +382,15 @@ button[disabled]{
   top:60rpx;
   right:82rpx;
   border-radius:50%;
+}
+.return_home_btn{
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  width:180rpx;
+  height:60rpx;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

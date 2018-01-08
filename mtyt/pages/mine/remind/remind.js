@@ -13,7 +13,7 @@ Page({
     let hour = e.detail.value;
     let min = parseInt(hour.substring(3, 5));
     hour = parseInt(hour.substring(0, 2));
-    console.log(hour+":"+min);
+    // console.log(hour+":"+min);
     this.setData({
       time: e.detail.value,
     });
@@ -53,7 +53,7 @@ Page({
       },
       data: {},
       success: res=>{
-        console.log(res.data);
+        // console.log(res.data);
         let hours = res.data.data.hour;
         let mins = res.data.data.min
         if ("0" <= hours && hours < "10") {
