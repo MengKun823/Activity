@@ -3,7 +3,8 @@
     "pages/home/home",
     "pages/mine/mine",
     "pages/home/answer/answer",
-    "pages/mine/remind/remind"
+    "pages/mine/remind/remind",
+    "pages/home/answer/knowledge/knowledge"
   ],
   "window": {
     "backgroundTextStyle": "light",

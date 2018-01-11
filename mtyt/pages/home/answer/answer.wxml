@@ -55,8 +55,19 @@
         <view class='analysis_bg'><text class='analysi_class'>易错项</text><text class='analysi_con'>{{fallibility}}</text></view>
         <view class='analysis_bg' bindtap='btnShare'><text class='analysi_class help'>分享给考友</text><image class='analysi_icon' src='../../../image/btn_share.png'></image></view>
       </view>
-      <view class='analysisText'>答案分解</view>
-      <view class='analysisBox'><view class='analysisValue'>{{explanation}}</view></view>
+      <view class='know_ana_box'>
+        <view class='analysisText'>答案分解</view>
+        <view class='analysisBox'><view class='analysisValue'>{{explanation}}</view></view>
+        <!-- 知识点功能 -->
+        <form class='knowledge_all' bindsubmit='answerSub' report-submit='true'>
+          <view class='knowledge_box' bindtap='rKnowledge'>
+            <button class='know_btn' form-type='submit'></button>
+            <text class='know_title'>相关知识点</text>
+            <text class='know_value'>加强和改进党对全面依法治国的领导</text>
+            <text class='know_provenance'>——中国特色社会主义法制理论</text>
+          </view>
+        </form>
+      </view>
     </view>
   </block>
 </view>

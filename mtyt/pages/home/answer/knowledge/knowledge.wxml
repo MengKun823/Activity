@@ -1,0 +1,6 @@
+<!--pages/home/answer/knowledge/knowledge.wxml-->
+<view class='know_box'>
+  <view class='know_title'>
+    <text class='title_text'>{{}}</text>
+  </view>
+</view>

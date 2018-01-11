@@ -1,6 +1,7 @@
 //app.js
 var user
 var code
+var aldstat = require("./utils/ald-stat.js");
 App({
   onLaunch: function () {
   },

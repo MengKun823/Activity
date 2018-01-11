@@ -8,6 +8,7 @@ var ansData;
 var arrDay;
 var year,month,day
 var code = wx.getStorageSync("code");
+app.aldstat.sendEvent('进入答题页面');
 Page({
   /**
    * 页面的初始数据
@@ -41,6 +42,12 @@ Page({
   /**
    * 事件处理函数
    */
+  //跳转知识点页面函数
+  rKnowledge:function(){
+    wx.navigateTo({
+      url: './knowledge/knowledge',
+    })
+  },
   //保存图片事件
   saveImg: function () {
     var that = this;
@@ -61,6 +68,7 @@ Page({
               icon: "success",
               duration: 3000
             });
+            app.aldstat.sendEvent('保存朋友圈图片');
             that.setData({
               showPosters: false
             })
@@ -131,6 +139,7 @@ Page({
   btnShare: function () {
     var that = this;
     var share_url = app.globalData.hostName + "/v2/question_share_image?day=" + that.data.ansData.show_day + "&id=" + that.data.userId + "&width=598&height=838&.jpeg";
+    app.aldstat.sendEvent('点击分享事件');
     wx.showToast({
       title: '正在生成...',
       icon: "loading"
@@ -148,6 +157,7 @@ Page({
     // console.log(wx.getStorageSync("token"));
     var days = that.data.ansData.show_day;
     // console.log(questionId)
+    app.aldstat.sendEvent('提交答案');
     wx.request({
       url: quesAns_url,
       method:"POST",
@@ -256,7 +266,6 @@ Page({
         let questionTure = ansData.question_content.question.correctOption.join("").toUpperCase();
             // console.log(ansData.easy_error_option);
         let fallibility = ansData.easy_error_option.toUpperCase();
-        //生成海报
         that.setData({
           ansData: res.data.data,
           day: day,

@@ -1,0 +1,12 @@
+/* pages/home/answer/knowledge/knowledge.wxss */
+.know_box{
+  display: flex;
+  flex-direction: column;
+  width: 750rpx;
+}
+.wid692{
+  width: 692rpx;
+}
+.wid672{
+  width: 672rpx;
+}

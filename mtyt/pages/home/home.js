@@ -10,6 +10,7 @@ var arrDay;
 var year, month, day;
 var ans_url = app.globalData.hostName + "/v2/question_detail";
 var dayTop = {};
+app.aldstat.sendEvent('进入首页');
 Page({
   data: {
     showMask: true

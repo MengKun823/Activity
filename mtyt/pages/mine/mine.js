@@ -1,5 +1,6 @@
 // 'use strict';
 const app = getApp();
+app.aldstat.sendEvent('进入我的页面');
 let Login = require('../../utils/login.js');
 let choose_year = null,
     choose_month = null;
@@ -218,6 +219,7 @@ const conf = {
       url: './remind/remind',
     })
     wx.setStorageSync("mine_dot", 1);
+    app.aldstat.sendEvent('点击设置按钮');
   },
   AnswerTap:function(e){
     let formId = e.detail.formId;

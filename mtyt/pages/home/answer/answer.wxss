@@ -212,7 +212,6 @@ button::after{
 .ansOptionBg{
   display: flex;
   flex-direction: column;
-  /* justify-content: center;  */
   align-items: center;
   width: 100%;
   margin-top: 28rpx;
@@ -286,6 +285,7 @@ button::after{
   align-items: center;
   width: 100%;
   height: 192rpx;
+  background-color: #FFFFFF;
 }
 .putIn{
   display: flex;
@@ -311,12 +311,12 @@ button[disabled]{
 .analysis{
   display: flex;
   flex-direction: column;
-  width: 100%
+  width: 100%;
+  background-color: #F1F7FC;
 }
 .analysis_bg{
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   width: 187.5rpx;
   height: 100rpx;
@@ -341,19 +341,21 @@ button[disabled]{
 .help{
   color: #1F82FF;
 }
+.know_ana_box{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #FFFFFF;
+  margin-top: 20rpx;
+}
 .analysisText{
   display: flex;
-  justify-content: center; 
   align-items: center;
-  border-radius: 30rpx;
-  width: 140rpx;
-  height: 60rpx;
-  background-image: linear-gradient(127deg, #1D73FF 0%, #27ADFF 100%);
-  font-family: 'PingFangSC-Regular';
-  font-size: 24rpx;
-  color: #FFFFFF;
-  letter-spacing: 0.7rpx;
-  margin: 0rpx 0 44rpx 42rpx;
+  font-family: 'PingFangSC-Semibold';
+  font-size: 32rpx;
+  color: #666666;
+  letter-spacing: -0.02rpx;
+  margin: 68rpx 0 30rpx 44rpx;
 }
 .analysisBox{
   display: flex;
@@ -365,14 +367,17 @@ button[disabled]{
   display: flex;
   justify-content: center; 
   align-items: center;
-  width: 690rpx;
+  width: 656rpx;
   line-height: 48rpx;
+  padding: 38rpx 14rpx 38rpx;
   font-family: 'PingFangSC-Regular';
   font-size: 28rpx;
   text-indent: 56rpx;
-  color: #666666;
-  letter-spacing: 0.82rpx;
-  margin-bottom: 50rpx;
+  color: #333333;
+  letter-spacing: -0.02rpx;
+  margin-bottom: 40rpx;
+  background: #F1F7FC;
+  border-radius: 12rpx;
 }
 .hiddenPosters{
   display:inline-block;
@@ -389,6 +394,61 @@ button[disabled]{
   display: inline-block;
   width:180rpx;
   height:60rpx;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.knowledge_all{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #FFFFFF;
+  padding-bottom: 60rpx;
+}
+.knowledge_box{
+  display: flex;
+  flex-direction: column;
+  width: 684rpx;
+  background-image: linear-gradient(139deg, #1D73FF 0%, #27ADFF 100%);
+  border-radius: 12rpx;
+  position: relative;
+  margin-bottom: 20rpx;
+}
+.know_title{
+  margin-top: 28rpx;
+  margin-left: 40rpx;
+  font-family: 'PingFangSC-Regular';
+  font-size: 24rpx;
+  color: #FFFFFF;
+  letter-spacing: -0.02rpx;
+}
+.know_value{
+  margin-top: 18rpx;
+  margin-left: 40rpx;
+  font-family: 'PingFangSC-Medium';
+  font-size: 36rpx;
+  color: #FFFFFF;
+  letter-spacing: -0.02rpx;
+}
+.know_provenance{
+  display: flex;
+  justify-content: flex-end;
+  margin: 20rpx 40rpx 28rpx 0;
+  opacity: 0.7;
+  font-family: 'PingFangSC-Semibold';
+  font-size: 24rpx;
+  color: #FFFFFF;
+  letter-spacing: -0.02rpx;
+}
+.know_btn{
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  width:100%;
+  height:100%;
   background: transparent;
   position: absolute;
   top: 0;
