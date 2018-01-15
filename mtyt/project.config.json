@@ -20,14 +20,18 @@
 			"current": -1,
 			"list": []
 		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
-			"current": 4,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
 					"name": "zidingyi",
 					"pathName": "pages/home/answer/answer",
-					"query": "days=2018-01-05"
+					"query": "days=2018-01-09"
 				},
 				{
 					"id": -1,
@@ -43,14 +47,9 @@
 				},
 				{
 					"id": -1,
-					"name": "zidingyi",
-					"pathName": "pages/home/answer/answer",
-					"query": "days=2018-01-02"
-				},
-				{
-					"id": -1,
 					"name": "konwledge",
-					"pathName": "pages/home/answer/knowledge/knowledge"
+					"pathName": "pages/home/answer/knowledge/knowledge",
+					"query": ""
 				}
 			]
 		}

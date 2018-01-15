@@ -43,9 +43,10 @@ Page({
    * 事件处理函数
    */
   //跳转知识点页面函数
-  rKnowledge:function(){
+  rKnowledge:function(item){
+    let knowledge_id = item.currentTarget.dataset.knowid
     wx.navigateTo({
-      url: './knowledge/knowledge',
+      url: './knowledge/knowledge?knowId=' + knowledge_id,
     })
   },
   //保存图片事件
@@ -266,6 +267,7 @@ Page({
         let questionTure = ansData.question_content.question.correctOption.join("").toUpperCase();
             // console.log(ansData.easy_error_option);
         let fallibility = ansData.easy_error_option.toUpperCase();
+        console.log(ansData);
         that.setData({
           ansData: res.data.data,
           day: day,

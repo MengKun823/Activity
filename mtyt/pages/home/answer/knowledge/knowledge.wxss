@@ -1,12 +1,109 @@
 /* pages/home/answer/knowledge/knowledge.wxss */
+image{
+  margin: 0;
+  padding: 0;
+  width: 0;
+  height: 0;
+}
 .know_box{
   display: flex;
   flex-direction: column;
   width: 750rpx;
 }
-.wid692{
+
+.w346{
   width: 692rpx;
 }
-.wid672{
+.w336{
   width: 672rpx;
+}
+.know_title{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 56rpx;
+  line-height: 56rpx;
+  margin-top: 50rpx;
+  margin-bottom: 70rpx;
+}
+.title_text{
+  font-family: 'PingFangSC-Medium';
+  font-size: 36rpx;
+  color: #333333;
+  letter-spacing: -0.06rpx;
+}
+.know_icon{
+  padding: 0;
+  display: inline-block;
+  width: 52rpx;
+  height: 48rpx;
+  margin: 0 18rpx 0 42rpx;
+}
+.know_common{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 56rpx;
+  line-height: 56rpx;
+  margin-bottom: 48rpx;
+}
+.know_text{
+  font-family: 'PingFangSC-Medium';
+  font-size: 36rpx;
+  color: #333333;
+  letter-spacing: -0.06rpx;
+}
+.know_system{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 122rpx;
+}
+.shenlan_banner_box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 110rpx;
+}
+.banner_bg{
+  height: 128rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* opacity: 0.39;  */
+  background-color: #F7F7F7;
+  line-height: 56rpx;
+  border-radius: 10rpx;
+}
+.banner_text{
+  display: block;
+  opacity: 1;
+  font-size: 28rpx;
+  color: #767676;
+  letter-spacing: -0.04rpx;
+  font-family: PingFangSC-Regular;  
+}
+.know_article{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  width: 100%;
+}
+.know_context{
+  display: flex;
+  font-family: 'PingFangSC-Regular';
+  font-size: 32rpx;
+  color: #333333;
+  letter-spacing: -0.06rpx;
+  line-height: 56rpx;
+}
+.mrg24{
+  margin-bottom: 48rpx;
+}
+.mrg10{
+  margin-bottom: 10rpx;
 }

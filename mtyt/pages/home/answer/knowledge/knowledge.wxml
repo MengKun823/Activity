@@ -1,6 +1,33 @@
+
 <!--pages/home/answer/knowledge/knowledge.wxml-->
 <view class='know_box'>
   <view class='know_title'>
-    <text class='title_text'>{{}}</text>
+    <text class='title_text'>{{knowledge_name}}</text>
+  </view>
+  <!-- 体系图 -->
+  <view class='know_common'>
+    <image class='know_icon' src='../../../../image/know_icon.png'></image>
+    <text class='know_text'>知识点体系</text>
+  </view>
+  <view class='know_system'>
+     <image wx:if="{{system_image}}" bindtap='btnPreview' style="width:672rpx;" mode='widthFix' src='{{"https:"+system_image}}' data-images='{{"https:"+system_image}}'></image>
+  </view>
+  <!-- 文稿 -->
+  <view class='know_common'>
+    <image class='know_icon' src='../../../../image/know_icon.png'></image>
+    <text class='know_text'>学习文稿</text>
+  </view>
+  <view class='know_article' wx:for="{{knowDataValue}}" wx:key="{{i.index+1}}" wx:for-item="i">
+      <view class='w336 know_context {{(i.temp.length > 1) && (index + 1 < i.temp.length) ? "mrg10" : "mrg24"}}' wx:for="{{i.temp}}" wx:key="{{j.index+1}}" wx:for-item="j">
+        <text>{{j}}</text>     
+      </view>
+      <image bindtap='btnPreview' class='mrg24' wx:if="{{i.type == 'picture'}}" style="width:672rpx;" mode='widthFix' src='{{"https:"+i.resource_info.url}}'  data-images='{{"https:"+i.resource_info.url}}'></image>
+  </view>
+  <!-- shenlan_banner -->
+  <view class='shenlan_banner_box'>
+    <view class='w346 banner_bg'>
+      <text class='banner_text'>下载“深蓝法考APP”</text>
+      <text class='banner_text'>看视频、做真题，全面备考通关法考</text>
+    </view>
   </view>
 </view>
